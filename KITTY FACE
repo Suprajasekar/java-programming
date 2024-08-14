@@ -1,0 +1,17 @@
+// SUPRAJA 192365009
+
+public class Main
+{
+	public static void main(String[] args) {
+	    String y="  ";
+	    System.out.println(y+y+y+y+y+y+y+y);
+	    System.out.println("     /\\        /\\");
+        System.out.println("    /  \\______/  \\");
+        System.out.println("   /              \\");
+        System.out.println("  (  /\\        /\\  )");
+        System.out.println("  ====     v    ====");
+        System.out.println("  ======(__|__)=====");
+        System.out.println("   (              )");
+        System.out.println("    (____________)");
+	}
+}
