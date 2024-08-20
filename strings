@@ -1,0 +1,94 @@
+package javaapplication;
+
+import java.util.Scanner;
+
+public class Search {
+    private String name;
+    private String username;
+    private String email;
+    private String password;
+
+    // Constructor
+    public Search() {
+        name = setName();
+        username = setUserName(name);
+        email = setEmail(username);
+        password = setPassword(username);
+    }
+
+    // toString method
+    @Override
+    public String toString() {
+        return "Employee Details\n" +
+               "Name : " + name + "\n" +
+               "Username : " + username + "\n" +
+               "Email : " + email + "\n" +
+               "Initial Password : " + password;
+    }
+
+    // Method to count occurrences of a character in a string
+    private int countChars(String str, char ch) {
+        int count = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == ch) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    // Method to set the employee's name
+    private String setName() {
+        Scanner scanner = new Scanner(System.in);
+        String name;
+        int count;
+
+        do {
+            System.out.println("Enter your first and last name: ");
+            name = scanner.nextLine();
+            count = countChars(name, ' ');
+        } while (count != 1);
+
+        return name;
+    }
+
+    // Method to set the username (lowercase firstname.lastname)
+    private String setUserName(String name) {
+        return name.toLowerCase().replace(" ", ".");
+    }
+
+    // Method to set the email address (first initial and surname followed by @oracleacademy.Test)
+    private String setEmail(String username) {
+        String[] parts = username.split("\\.");
+        return parts[0].charAt(0) + parts[1] + "@oracleacademy.Test";
+    }
+
+    // Method to set the complex initial password
+    private String setPassword(String username) {
+        String pwd = username.length() >= 8 ? username.substring(0, 8) : username;
+        
+        // Replace vowels with '*'
+        pwd = pwd.replaceAll("[aeiou]", "*");
+
+        // If shorter than 8 characters, pad with '*'
+        while (pwd.length() < 8) {
+            pwd += "*";
+        }
+
+        // Convert the first alphabetic character to uppercase
+        for (int i = 0; i < pwd.length(); i++) {
+            if (Character.isLetter(pwd.charAt(i))) {
+                pwd = pwd.substring(0, i) + Character.toUpperCase(pwd.charAt(i)) + pwd.substring(i + 1);
+                break;
+            }
+        }
+
+        return pwd;
+    }
+
+    // Main method to create an Employee object and display the details
+    public static void main(String[] args) {
+        Search emp = new Search();
+        System.out.println(emp);
+    }
+}
