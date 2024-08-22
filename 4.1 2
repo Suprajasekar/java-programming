@@ -1,0 +1,9 @@
+public String reverse(String str) {
+    String strRev = "";
+    // Start from the last character and go to the first
+    for (int i = str.length() - 1; i >= 0; i--) {
+        // Add the character at position i to strRev
+        strRev += str.charAt(i);
+    } // endfor
+    return strRev;
+} // end method reverse
